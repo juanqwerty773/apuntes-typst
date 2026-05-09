@@ -253,7 +253,7 @@ IC($e^(-mu)$) = [$e^(-(dash(X)+ t_(n-1,alpha/2) S_n/sqrt(n))), e^(-( dash(X)-t_(
 IC($e^(-mu)$) = [#calc.round( calc.exp(-xx.at(1)),digits: 4),#calc.round( calc.exp(-xx.at(0)),digits: 4)]
 de nivel 0.95
 
-#image("image.png")
+#image("image5.png")
 
 
 a) $x tilde epsilon(lambda) => Y = 2lambda X tilde chi_2^2$
@@ -379,3 +379,33 @@ de B tendiendo a 1 $B^n - A^n = 1 - A^n = 1- alpha <=> A^n = alpha$
 
 IC($theta$) = T($root(n,alpha)$,1)
 
+
+#image("image7.png")
+
+
+a) 
+
+  $B(1,p)$
+
+  sea $X_i tilde B(1,p), EE(X) = p, VV(X) = p(1-p)$
+
+  $sqrt(n)(dash(X)- p)/sqrt(p -(1-p)) to^D N(0,1)\
+  hat(p) = dash(X) to^P p\
+  $
+  
+  busco la convergencia de:
+  
+  $sqrt(n)(dash(X)- p)/(sqrt(hat(p) -(1-hat(p))))
+
+  = sqrt(n)(dash(X)- p)/sqrt(p -(1-p)) (sqrt(hat(p) -(1-hat(p))))/sqrt(p -(1-p)) to^("Slutsky ")_D N(0,1)
+  $ 
+
+  Por lo tanto:
+
+  $P(-z_alpha < sqrt(n)(dash(X)- p)/(sqrt(hat(p) -(1-hat(p)))) < z_alpha) \
+  = P(-z_alpha (sqrt(hat(p) -(1-hat(p))))/sqrt(n) - dash(X) < -p < z_alpha (sqrt(hat(p) -(1-hat(p))))/sqrt(n) - dash(X))\
+  = P(-z_alpha (sqrt(hat(p) -(1-hat(p))))/sqrt(n) + dash(X) < p < z_alpha (sqrt(hat(p) -(1-hat(p))))/sqrt(n) + dash(X)) to 1-alpha\
+  $
+
+  El intervalo de confianza de nivel asintotico 1- alpha para p es:
+  IC_asin (p) = $[-z_alpha (sqrt(dash(X) -(1-dash(X))))/sqrt(n) + dash(X) ,z_alpha (sqrt(dash(X) -(1-dash(X))))/sqrt(n) + dash(X)]$
