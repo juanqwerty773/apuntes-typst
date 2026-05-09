@@ -1,10 +1,10 @@
-#set page(width: 14cm, height: 18cm)
+#set page(width: 16cm, height: 18cm)
 
 // Configurar el color de la hoja a negro
-#set page(fill: luma(100%))
+#set page(fill: luma(0%))
 
 // Configurar el color de la tinta a blanco
-#set text(fill: luma(00%))
+#set text(fill: luma(50%))
 
 #let hh = h(0.5em)
 #let emv = "EMV"
@@ -379,7 +379,7 @@ de B tendiendo a 1 $B^n - A^n = 1 - A^n = 1- alpha <=> A^n = alpha$
 
 IC($theta$) = T($root(n,alpha)$,1)
 
-
+== 7)
 #image("image7.png")
 
 
@@ -389,23 +389,90 @@ a)
 
   sea $X_i tilde B(1,p), EE(X) = p, VV(X) = p(1-p)$
 
-  $sqrt(n)(dash(X)- p)/sqrt(p -(1-p)) to^D N(0,1)\
+  $sqrt(n)(dash(X)- p)/sqrt(p(1-p)) to^D N(0,1)\
   hat(p) = dash(X) to^P p\
   $
   
   busco la convergencia de:
   
-  $sqrt(n)(dash(X)- p)/(sqrt(hat(p) -(1-hat(p))))
+  $sqrt(n)(dash(X)- p)/(sqrt(hat(p) (1-hat(p))))
 
-  = sqrt(n)(dash(X)- p)/sqrt(p -(1-p)) (sqrt(hat(p) -(1-hat(p))))/sqrt(p -(1-p)) to^("Slutsky ")_D N(0,1)
+  = sqrt(n)(dash(X)- p)/sqrt(p (1-p)) (sqrt(hat(p)(1-hat(p))))/sqrt(p (1-p)) to^("Slutsky ")_D N(0,1)
   $ 
 
   Por lo tanto:
 
-  $P(-z_alpha < sqrt(n)(dash(X)- p)/(sqrt(hat(p) -(1-hat(p)))) < z_alpha) \
-  = P(-z_alpha (sqrt(hat(p) -(1-hat(p))))/sqrt(n) - dash(X) < -p < z_alpha (sqrt(hat(p) -(1-hat(p))))/sqrt(n) - dash(X))\
-  = P(-z_alpha (sqrt(hat(p) -(1-hat(p))))/sqrt(n) + dash(X) < p < z_alpha (sqrt(hat(p) -(1-hat(p))))/sqrt(n) + dash(X)) to 1-alpha\
+  $P(-z_alpha < sqrt(n)(dash(X)- p)/(sqrt(hat(p) (1-hat(p)))) < z_alpha) \
+  = P(-z_alpha (sqrt(hat(p) (1-hat(p))))/sqrt(n) - dash(X) < -p < z_alpha (sqrt(hat(p) (1-hat(p))))/sqrt(n) - dash(X))\
+  = P(-z_alpha (sqrt(hat(p) (1-hat(p))))/sqrt(n) + dash(X) < p < z_alpha (sqrt(hat(p) (1-hat(p))))/sqrt(n) + dash(X)) to 1- 2 alpha\
   $
 
   El intervalo de confianza de nivel asintotico 1- alpha para p es:
-  IC_asin (p) = $[-z_alpha (sqrt(dash(X) -(1-dash(X))))/sqrt(n) + dash(X) ,z_alpha (sqrt(dash(X) -(1-dash(X))))/sqrt(n) + dash(X)]$
+  IC_asin (p) = $[-z_alpha (sqrt(dash(X) (1-dash(X))))/sqrt(n) + dash(X) ,z_alpha (sqrt(dash(X) (1-dash(X))))/sqrt(n) + dash(X)]$
+
+b)
+ 
+ $X_i = cases(1 "si se curo", 0 "si no se curo")\
+ 
+ dash(X) = 3/10$
+
+ como se quiere el un nivel asintotico 0.95 $alpha = 0.05, alpha/2 = 0.025, z_alpha = z_(0.025) $
+ 
+ IC_asin (p) = $[-z_(0.025) (sqrt(0.3(1-0.3)))/sqrt(100) + 0.3 ,z_(0.025) (sqrt(0.3 (1-0.3)))/sqrt(n) + 0.3]$
+
+
+IC_asin (p) = [
+#calc.round(-1.96* calc.sqrt(0.3*(1-0.3))/calc.sqrt(100) + 0.3,digits: 4)
+#calc.round(1.96* calc.sqrt(0.3*(1-0.3))/calc.sqrt(100) + 0.3,digits: 4)]
+
+long(IC(p)) = #(calc.round((1.96* calc.sqrt(0.3*(1-0.3))/calc.sqrt(100) + 0.3)- (-1.96* calc.sqrt(0.3*(1-0.3))/calc.sqrt(100) + 0.3),digits: 4))
+
+c)
+
+long(IC(p)) = $2 z_alpha (sqrt(dash(X) (1-dash(X))))/sqrt(n)$
+
+$0.1>2 z_alpha (sqrt(dash(X) (1-dash(X))))/sqrt(n) <=> (0.05/z_alpha)^2 > (dash(X)(1-dash(X)))/n $
+
+$f(x)  =x(1-x), 0<= x<= 1\
+f'(x) = 1-2x = 0; x = 1/2$
+
+alcanza su maximo en x = 0.5
+
+$0.5/n >= (dash(X)(1-dash(X)))/n$ busco n tal que:
+
+$(0.05/z_alpha)^2 > 1/(2n) <=> n > 1/2 (z_alpha/0.05)^2 $
+
+para z_alpha = 0.025
+
+n > #calc.round(1/2 *calc.pow(1.96/0.05,2),digits: 0)
+
+== 8)
+#image("image8.png")
+
+$X = cases(1 "si se recibe un bit con un" 1, 0 "si se recibe un bit con un" 0)$
+
+P(X = 1) = 1/2
+
+$P(Y =1 ) = P(Y = 1 | X = 1)P(X=1) + P(Y = 1|X= 0)P(X= 0)\
+= P(Y = 1 | X = 1) 1/2 +  P(Y = 1|X= 0)1/2 = p/2 + (1-0.6)/2\
+= p/2 + 0.2\
+$
+
+$P(Y =0 ) = P(Y = 0 | X = 1)P(X=1) + P(Y = 0|X= 0)P(X= 0)\
+P(Y = 0 | X = 1)/2 + P(Y = 0|X= 0)/2 = (1-p)/2 + 0.6/2
+= 1/2 -p/2 + 0.3 = 0.8 - p/2 $
+
+$Y tilde B(1,p/2 + 0.2)$
+
+sea $1-alpha = 0.95$ tal que $alpha/2 = 0.025$
+
+n > 768 por el ejercicio anterior 
+
+== 9)
+  #image("image9.png")
+stdsd
+asd
+
+asd
+
+== 10)
