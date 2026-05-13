@@ -253,6 +253,7 @@ IC($e^(-mu)$) = [$e^(-(dash(X)+ t_(n-1,alpha/2) S_n/sqrt(n))), e^(-( dash(X)-t_(
 IC($e^(-mu)$) = [#calc.round( calc.exp(-xx.at(1)),digits: 4),#calc.round( calc.exp(-xx.at(0)),digits: 4)]
 de nivel 0.95
 
+== 5)
 #image("image5.png")
 
 
@@ -317,6 +318,7 @@ hay #datos.len() datos
 #inter_5(datos,20.707 ,67.985)
 
 "1/λ∈(25.6,84.0) dıˊas aprox."
+== 7)
 
 
 #image("image (1).png")
@@ -469,10 +471,120 @@ sea $1-alpha = 0.95$ tal que $alpha/2 = 0.025$
 n > 768 por el ejercicio anterior 
 
 == 9)
-  #image("image9.png")
-stdsd
-asd
+#image("image9.png")
 
-asd
+$X tilde  cal(P)(lambda)\
+
+dash(X) to^P EE(X)\
+g(dash(X)) to^P g(EE(X))\
+
+sqrt(n) (dash(X) - lambda)/sqrt(lambda) to^p N(0,1)$
+
+quiero ver la convergencia de:
+
+$sqrt(n)(dash(X) - lambda)/sqrt(hat(lambda)) = sqrt(n)(dash(X) - lambda)/sqrt(lambda) sqrt(lambda)/ sqrt(hat(lambda)) to^("Slutsky")_D N(0,1) $
+
+sea $P(X >z_(alpha)) = alpha, quad Y tilde N(0,1)$
+
+$P(-z_(alpha/2) < sqrt(n)(dash(X) - lambda)/sqrt(hat(lambda)) < z_(alpha/2)) = P(-z_(alpha/2) sqrt(hat(lambda)/n) < dash(X) - lambda < z_(alpha/2) sqrt(hat(lambda)/n))\
+= P(-z_(alpha/2) sqrt(hat(lambda)/n)-dash(X) < -lambda< z_(alpha/2) sqrt(hat(lambda)/n) - dash(X))\
+= P(dash(X)-z_(alpha/2) sqrt(hat(lambda)/n)< lambda < z_(alpha/2) sqrt(hat(lambda)/n) + dash(X) ) to 1-alpha $
+
+IC($lambda$) =$[dash(X)-z_(alpha/2) sqrt(hat(lambda)/n),z_(alpha/2) sqrt(hat(lambda)/n) + dash(X)]$
+
+$= [dash(X)-z_(alpha/2) sqrt(dash(X)/n),z_(alpha/2) sqrt(dash(X)/n) + dash(X)]$
+
+b)
+
+promedio #(1761/50)
+
+alpha/2: 0.05
+
+z_alpha/2: 1.645
+
+el intervalo queda dado por:
+
+$[
+  #calc.round(1761/50 - (1.645*calc.sqrt(1761/50 /50)),digits: 2),
+  #calc.round(1761/50 + (1.645*calc.sqrt(1761/50 /50)),digits: 2)
+]$
 
 == 10)
+
+#image("image10.png")
+
+a) se espero 50 segundos donde se registraron 4 particulas alfa
+
+de una muestra de 50 datos 4 fueron particulas alfa.
+
+el promedio es 4/50 
+
+b) se espero hasta la cuarta particula alfa que se registro a los 50 segundos
+
+la cuarta particula alfa se registro a los 50 segundos.
+
+cada 50 datos se optienen 4 particulas alfa
+
+== 11)
+
+#image("/assets/image.png")
+#image("/assets/image-1.png")
+
+
+
+$X tilde N(mu_1,sigma^2)\
+Y tilde N(mu_2,sigma^2)$
+
+
+$dash(X) = 1/n sum X_i tilde 1/n N(mu_1 n , n sigma^2) = N(mu_1, sigma^2/n)
+$
+
+$dash(X) tilde N(mu_1,sigma^2/n_1)\
+dash(Y) tilde N(mu_2, sigma ^2/n_2)\
+
+dash(X) - dash(Y) tilde N(mu_1 - mu_2, sigma^2/(n_1 + n_2))\
+\
+
+P(-z_alpha < (dash(X) - dash(Y) -(mu_1 -mu_2))/(sigma/sqrt(n_1 + n_2)) < z_alpha )
+\
+= P(-z_alpha (sigma/sqrt(n_1 + n_2)) <dash(X) - dash(Y) -(mu_1 -mu_2)< (sigma/sqrt(n_1 + n_2))z_alpha)\
+= P(-z_alpha (sigma/sqrt(n_1 + n_2)) < -dash(X) + dash(Y) + (mu_1 -mu_2)< (sigma/sqrt(n_1 + n_2))z_alpha)\
+= P(-z_alpha (sigma/sqrt(n_1 + n_2)) +dash(X) - dash(Y) <(mu_1 -mu_2)< (sigma/sqrt(n_1 + n_2))z_alpha + dash(X) - dash(Y))\
+I C (mu_1 - mu_2) = [-(sigma/sqrt(n_1 + n_2))z_alpha + dash(X) - dash(Y), (sigma/sqrt(n_1 + n_2))z_alpha + dash(X) - dash(Y)]$
+
+lo hice con el promedio pq no tengo las variables en si, pero no sirve pq tampoco tengo el valor de sigma.
+
+
+ahora lo hago bien:
+
+$Z tilde N(mu,sigma^2), S_n^2 = 1/(n-1) sum_(i=1)^n (Z_i - dash(Z))^2\
+
+sqrt(n) (dash(Z)- mu)/S_n tilde t_(n-1)$
+
+//tomo como $Z_1 = (dash(X) - mu_1)/(sigma/sqrt(n_1)) tilde N(0,1), Z_2 = (dash(Y)-mu_2)/(sigma/sqrt(n_2)) tilde N(0,1), dash(Z) = (Z_1 + Z_2)/2$
+
+sea $Z_1-mu_1 ,dots, Z_n_1-mu_1, Z_(n_1 + 1)-mu_2,dots, Z_(n_1 +n_2)-mu_2 tilde N(0,sigma^2)$
+
+$P(A>t_(alpha)) = alpha, A tilde t_1\
+
+P(t_(1-alpha)< sqrt(n) (dash(Z)- mu)/S_n <t_alpha) = P(t_(1-alpha) S_n/sqrt(n) <dash(Z)- mu <t_alpha  S_n/sqrt(n))\
+=P( -t_alpha  S_n/sqrt(n) < mu - dash(Z) < - t_(1-alpha) S_n/sqrt(n) )\
+=P( -t_alpha  S_n/sqrt(n) + dash(Z) < mu < - t_(1-alpha) S_n/sqrt(n) + dash(Z))\
+   $
+
+IC($mu$) = $[-t_alpha  S_n/sqrt(n) + dash(Z), - t_(1-alpha) S_n/sqrt(n) + dash(Z)]$
+
+$ $
+
+tampoco sirve no tengo  s_n
+
+TODO LO ANTERIOR ESTA MAL
+
+== 13)
+#image("/assets/image-2.png")
+
+
+#image("/assets/image-3.png")
+
+
+
